@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script>
+    function AddRow() {
+      document.getElementById("display_error").innerHTML = "addrow";
+
+      var EnquiryNo = document.getElementById("Enquiry No.").value;
+      var CustomerName = document.getElementById("Customer Name").value;
+      var Salesman = document.getElementById("Salesman").value;
+      var EnquiryDate = document.getElementById("Enquiry Date").value;
+      var FinalRateSP = document.getElementById("Final Rate SP").value;
+      var FinalRateCustomer = document.getElementById("Final Rate Customer").value;
+      var QuotationNo = document.getElementById("Quotation No.").value;
+      var QuotationDate = document.getElementById("Quotation Date").value;
+      var RecDateCustBKConfirm = document.getElementById("Rec Date - Cust BK Confirm").value;
+      var SentDateSPBKConfirm = document.getElementById("Sent Date - SP BK Confirm").value;
+      var BKConfirmNo = document.getElementById("BK Confirm No.").value;
+      var JobNo = document.getElementById("Job No.").value;
+      var CROReceivedDate = document.getElementById("CRO Received Date").value;
+      var CROSenttoTransDate = document.getElementById("CRO Sent to Trans Date").value;
+      var CRONo = document.getElementById("CRO No.").value;
+      var ContrNo = document.getElementById("Contr No.").value;
+      var ContrNoRecDate = document.getElementById("Contr No. Rec Date ").value;
+      var WBillNo = document.getElementById("W/Bill No.").value;
+      var WBillSentDate = document.getElementById("W/Bill Sent Date").value;
+      var SealNo = document.getElementById("Seal No.").value;
+      var SealNoRecDate = document.getElementById("Seal No. Rec Date").value;
+      var FullMovedtoTerminal = document.getElementById("Full Moved to Terminal").value;
+      var ShippingInstRecDate = document.getElementById("Shipping Inst Rec Date").value;
+      var ShipInstSentDatetoSL = document.getElementById("Ship Inst - Sent Date to SL").value;
+      var ManifestRecDatefromSL = document.getElementById("Manifest Rec Date from SL").value;
+      var ShiperCLDocDate = document.getElementById("Shiper CL Doc Date").value;
+      var BLDraftRecDatefromSL = document.getElementById("BL Draft Rec Date from SL").value;
+      var BLDraftSentDatetoCust = document.getElementById("BL Draft Sent Date to Cust").value;
+      var BLDraftConfRecDatefromCust = document.getElementById("BL Draft Conf Rec Date from Cust").value;
+      var DocSenttoBrokerdate = document.getElementById("Doc Sent to Broker date").value;
+      var ManifestSenttoBrokerDate = document.getElementById("Manifest Sent to Broker Date").value;
+      var GatePassRecDate = document.getElementById("Gate Pass Rec Date").value;
+      var GatePassSenttoTransDate = document.getElementById("Gate Pass Sent to Trans Date").value;
+      var FinalBayanOKtoLoadRecDate = document.getElementById("Final Bayan/OK to Load Rec Date").value;
+      var BKMsgSentDate = document.getElementById("BK Msg Sent Date").value;
+      var BKconfirmationRecDate = document.getElementById("BK confirmation Rec Date").value;
+      var LoadingConfirmationRecDate = document.getElementById("Loading Confirmation Rec Date").value;
+      var PrealertSentDate = document.getElementById("Pre alert Sent Date").value;
+      var ArrivalNotificationSentDate = document.getElementById("Arrival Notification Sent Date").value;
+      var InvoicPreparedDate = document.getElementById("Invoic Prepared Date").value;
+      var DocumentsReleasedDate = document.getElementById("Documents Released Date").value;
+      var GuaranteeCollectedDate = document.getElementById("Guarantee Collected Date").value;
+      var OBLCollectedDate = document.getElementById("OBL Collected Date").value;
+      var PaymentRecDate = document.getElementById("Payment Rec Date").value;
+      var HBLDate = document.getElementById("HBL Date").value;
+      var MBLDate = document.getElementById("MBL Date").value;
+      var DebitCreditNoteDate = document.getElementById("Debit/Credit Note  Date").value;
+      var TelexReleaseSeawayBillDate = document.getElementById("Telex Release/Seaway Bill Date").value;
+
+
+      google.script.run.AddRecord(
+        EnquiryNo
+        , CustomerName
+        , Salesman
+        , EnquiryDate
+        , FinalRateSP
+        , FinalRateCustomer
+        , QuotationNo
+        , QuotationDate
+        , RecDateCustBKConfirm
+        , SentDateSPBKConfirm
+        , BKConfirmNo
+        , JobNo
+        , CROReceivedDate
+        , CROSenttoTransDate
+        , CRONo
+        , ContrNo
+        , ContrNoRecDate
+        , WBillNo
+        , WBillSentDate
+        , SealNo
+        , SealNoRecDate
+        , FullMovedtoTerminal
+        , ShippingInstRecDate
+        , ShipInstSentDatetoSL
+        , ManifestRecDatefromSL
+        , ShiperCLDocDate
+        , BLDraftRecDatefromSL
+        , BLDraftSentDatetoCust
+        , BLDraftConfRecDatefromCust
+        , DocSenttoBrokerdate
+        , ManifestSenttoBrokerDate
+        , GatePassRecDate
+        , GatePassSenttoTransDate
+        , FinalBayanOKtoLoadRecDate
+        , BKMsgSentDate
+        , BKconfirmationRecDate
+        , LoadingConfirmationRecDate
+        , PrealertSentDate
+        , ArrivalNotificationSentDate
+        , InvoicPreparedDate
+        , DocumentsReleasedDate
+        , GuaranteeCollectedDate
+        , OBLCollectedDate
+        , PaymentRecDate
+        , HBLDate
+        , MBLDate
+        , DebitCreditNoteDate
+        , TelexReleaseSeawayBillDate
+      );
+
+      document.getElementById("display_error").innerHTML = "";
+
+    }
+  </script>
+</head>
+
+<body>
+  <div>
+    <form style="padding-left : 100px; padding-top: 50px;">
+      <div class="form-row">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Enquiry No.">Enquiry No.</label><input type="text" id="Enquiry No."
+            class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Customer Name">Customer Name</label><input type="text"
+            id="Customer Name" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Salesman">Salesman</label><input type="text" id="Salesman"
+            class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Enquiry Date">Enquiry Date</label><input type="text"
+            id="Enquiry Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Final Rate SP">Final Rate SP</label><input type="text"
+            id="Final Rate SP" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Final Rate Customer">Final Rate Customer</label><input type="text"
+            id="Final Rate Customer" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Quotation No.">Quotation No.</label><input type="text"
+            id="Quotation No." class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Quotation Date">Quotation Date</label><input type="text"
+            id="Quotation Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Rec Date - Cust BK Confirm">Rec Date - Cust BK
+            Confirm</label><input type="text" id="Rec Date - Cust BK Confirm" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Sent Date - SP BK Confirm">Sent Date - SP BK Confirm</label><input
+            type="text" id="Sent Date - SP BK Confirm" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="BK Confirm No.">BK Confirm No.</label><input type="text"
+            id="BK Confirm No." class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Job No.">Job No.</label><input type="text" id="Job No."
+            class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="CRO Received Date">CRO Received Date</label><input type="text"
+            id="CRO Received Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="CRO Sent to Trans Date">CRO Sent to Trans Date</label><input
+            type="text" id="CRO Sent to Trans Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="CRO No.">CRO No.</label><input type="text" id="CRO No."
+            class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Contr No.">Contr No.</label><input type="text" id="Contr No."
+            class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Contr No. Rec Date ">Contr No. Rec Date </label><input type="text"
+            id="Contr No. Rec Date " class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="W/Bill No.">W/Bill No.</label><input type="text" id="W/Bill No."
+            class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="W/Bill Sent Date">W/Bill Sent Date</label><input type="text"
+            id="W/Bill Sent Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Seal No.">Seal No.</label><input type="text" id="Seal No."
+            class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Seal No. Rec Date">Seal No. Rec Date</label><input type="text"
+            id="Seal No. Rec Date" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Full Moved to Terminal">Full Moved to Terminal</label><input
+            type="text" id="Full Moved to Terminal" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Shipping Inst Rec Date">Shipping Inst Rec Date</label><input
+            type="text" id="Shipping Inst Rec Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Ship Inst - Sent Date to SL">Ship Inst - Sent Date to
+            SL</label><input type="text" id="Ship Inst - Sent Date to SL" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Manifest Rec Date from SL">Manifest Rec Date from SL</label><input
+            type="text" id="Manifest Rec Date from SL" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Shiper CL Doc Date">Shiper CL Doc Date</label><input type="text"
+            id="Shiper CL Doc Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="BL Draft Rec Date from SL">BL Draft Rec Date from SL</label><input
+            type="text" id="BL Draft Rec Date from SL" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="BL Draft Sent Date to Cust">BL Draft Sent Date to
+            Cust</label><input type="text" id="BL Draft Sent Date to Cust" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="BL Draft Conf Rec Date from Cust">BL Draft Conf Rec Date from
+            Cust</label><input type="text" id="BL Draft Conf Rec Date from Cust" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Doc Sent to Broker date">Doc Sent to Broker date</label><input
+            type="text" id="Doc Sent to Broker date" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Manifest Sent to Broker Date">Manifest Sent to Broker
+            Date</label><input type="text" id="Manifest Sent to Broker Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Gate Pass Rec Date">Gate Pass Rec Date</label><input type="text"
+            id="Gate Pass Rec Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Gate Pass Sent to Trans Date">Gate Pass Sent to Trans
+            Date</label><input type="text" id="Gate Pass Sent to Trans Date" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Final Bayan/OK to Load Rec Date">Final Bayan/OK to Load Rec
+            Date</label><input type="text" id="Final Bayan/OK to Load Rec Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="BK Msg Sent Date">BK Msg Sent Date</label><input type="text"
+            id="BK Msg Sent Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="BK confirmation Rec Date">BK confirmation Rec Date</label><input
+            type="text" id="BK confirmation Rec Date" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Loading Confirmation Rec Date">Loading Confirmation Rec
+            Date</label><input type="text" id="Loading Confirmation Rec Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Pre alert Sent Date">Pre alert Sent Date</label><input type="text"
+            id="Pre alert Sent Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Arrival Notification Sent Date">Arrival Notification Sent
+            Date</label><input type="text" id="Arrival Notification Sent Date" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="Invoic Prepared Date">Invoic Prepared Date</label><input
+            type="text" id="Invoic Prepared Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Documents Released Date">Documents Released Date</label><input
+            type="text" id="Documents Released Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Guarantee Collected Date">Guarantee Collected Date</label><input
+            type="text" id="Guarantee Collected Date" class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="OBL Collected Date">OBL Collected Date</label><input type="text"
+            id="OBL Collected Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Payment Rec Date">Payment Rec Date</label><input type="text"
+            id="Payment Rec Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="HBL Date">HBL Date</label><input type="text" id="HBL Date"
+            class="form-control" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3"><label for="MBL Date">MBL Date</label><input type="text" id="MBL Date"
+            class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Debit/Credit Note  Date">Debit/Credit Note Date</label><input
+            type="text" id="Debit/Credit Note  Date" class="form-control" /></div>
+        <div class="form-group col-md-3"><label for="Telex Release/Seaway Bill Date">Telex Release/Seaway Bill
+            Date</label><input type="text" id="Telex Release/Seaway Bill Date" class="form-control" /></div>
+
+      </div>
+
+
+
+      <div class="form-group col-md-3">
+        <input type="button" value="Submit" class="btn btn-primary" onclick="AddRow()" />
+        <div id="display_error" style="color: rgb(0, 119, 255)"></div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
