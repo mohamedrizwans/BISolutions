@@ -43,10 +43,13 @@
                 "<tr>" +                               //Change table headings to match witht he Google Sheet
                 "<th scope='col'>Delete</th>" +
                 "<th scope='col'>Edit</th>" +
-                "<th scope='col'>RecId</th>" +
                 "<th scope='col'>ID</th>" +
                 "<th scope='col'>Name</th>" +
-
+                "<th scope='col'>Gender</th>" +
+                "<th scope='col'>Date of Birth</th>" +
+                "<th scope='col'>Email</th>" +
+                "<th scope='col'>Phone</th>" +
+                "<th scope='col'>country</th>" +
                 "</tr>" +
                 "</thead>";
             for (var i = 0; i < dataArray.length; i++) {
@@ -87,8 +90,12 @@
     //POPULATE FORM
     function populateForm(records) {
         document.getElementById('RecId').value = records[0][0];
-        document.getElementById('id').value = records[0][1];
-        document.getElementById('name').value = records[0][2];
+        document.getElementById('name').value = records[0][1];
+        document.getElementById(records[0][2]).checked = true;
+        document.getElementById('dateOfBirth').value = records[0][3];
+        document.getElementById('email').value = records[0][4];
+        document.getElementById('phone').value = records[0][5];
+        document.getElementById("country").value = records[0][6];
         document.getElementById("message").innerHTML = "<div class='alert alert-warning' role='alert'>Update Record [ID: " + records[0][0] + "]</div>";
     }
 

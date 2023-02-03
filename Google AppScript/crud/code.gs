@@ -1,3 +1,8 @@
+/*
+# CREATED BY: BPWEBS.COM
+# URL: https://www.bpwebs.com
+*/
+
 function doGet(request) {
   return HtmlService.createTemplateFromFile("Index").evaluate();
 }
@@ -5,12 +10,12 @@ function doGet(request) {
 /* DEFINE GLOBAL VARIABLES, CHANGE THESE VARIABLES TO MATCH WITH YOUR SHEET */
 function globalVariables() {
   var varArray = {
-    spreadsheetId: "10e0nTD-xwNvhwy2vgbdnYI3vvypFE2WXW_xIgl8PyYE", //** CHANGE !!!
-    dataRage: "Data!A2:C", //** CHANGE !!!
+    spreadsheetId: "1ZibOmtjn8RUlG-ULtj72INWCQx0Xt6ptGVrIAc3OrbM", //** CHANGE !!!
+    dataRage: "Data!A2:G", //** CHANGE !!!
     idRange: "Data!A2:A", //** CHANGE !!!
-    lastCol: "B", //** CHANGE !!!
-    insertRange: "Data!A1:C1", //** CHANGE !!!
-    sheetID: "1890889118", //** CHANGE !!! Ref:https://developers.google.com/sheets/api/guides/concepts#sheet_id
+    lastCol: "G", //** CHANGE !!!
+    insertRange: "Data!A1:G1", //** CHANGE !!!
+    sheetID: "0", //** CHANGE !!! Ref:https://developers.google.com/sheets/api/guides/concepts#sheet_id
   };
   return varArray;
 }
@@ -44,14 +49,26 @@ function getFormValues(formObject) {
   /* ADD OR REMOVE VARIABLES ACCORDING TO YOUR FORM*/
   if (formObject.RecId && checkID(formObject.RecId)) {
     var values = [
-      [formObject.RecId.toString(), formObject.id, formObject.name],
+      [
+        formObject.RecId.toString(),
+        formObject.name,
+        formObject.gender,
+        formObject.dateOfBirth,
+        formObject.email,
+        formObject.phone,
+        formObject.country,
+      ],
     ];
   } else {
     var values = [
       [
         new Date().getTime().toString(), //https://webapps.stackexchange.com/a/51012/244121
-        formObject.id,
         formObject.name,
+        formObject.gender,
+        formObject.dateOfBirth,
+        formObject.email,
+        formObject.phone,
+        formObject.country,
       ],
     ];
   }
