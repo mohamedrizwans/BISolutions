@@ -26,12 +26,20 @@ function validate(email, fileID){
 
 function globalVariables(){ 
   var varArray = {
-    spreadsheetId   : '1s_xWoCqqIA2Mm4YKUQEjAKPSA-NcAWUwb_VfoU8s6vo',
-    dataRage        : 'Sheet1!A2:J',
-    idRange         : 'Sheet1!A2:A',
-    lastCol         : 'J',
-    insertRange     : 'Sheet1!A1:J1',
-    sheetID         : '0' //number after gid=... at url google sheet 
+    
+    
+     
+      
+      
+  
+      
+
+    spreadsheetId   : "1uKQl-a0Hk-zJA_Z4hb8lWW08dD4XLyB17cuInm7oieA",
+    dataRage        : "Sheet1!A2:BG",
+    idRange         : "Sheet1!A2:A",  
+    lastCol         : "BG",
+    insertRange     : "Sheet1!A1:BG1",
+    sheetID         : "0"
   };
   return varArray;
 }
@@ -48,11 +56,11 @@ function processForm(formObject){
 function getFormValues(formObject){
   if(formObject.RecId && checkID(formObject.RecId)){
     var values = [[
-    formObject.RecId,formObject.ProductName,formObject.ProductCode,formObject.Price,formObject.Discount,formObject.TotalPrice
+    formObject.RecId,formObject.EntryDate,formObject.Status,formObject.CustomerName,formObject.LeadDate,formObject.CancelledDate,formObject.EnqDate,formObject.POL,formObject.POD,formObject.Cntr20,formObject.Cntr40_40Hc,formObject.AIR_LCR,formObject.PeriodOfShpmt,formObject.Commodity,formObject.RateReqDate,formObject.RateRcvdDate,formObject.BuyRate,formObject.SellRate,formObject.Profit,formObject.QtnSentDate,formObject.CnfmRcvdDate,formObject.JobDate,formObject.JobNo,formObject.BkgSentToLineorAgtDate,formObject.CroReceivedDate,formObject.CroSentToTransDate,formObject.CroNo,formObject.ContrNo,formObject.ContrNoRecDate,formObject.WBillNo,formObject.WBillSentDate,formObject.SealNo,formObject.SealNoRecDate,formObject.FullMovedToTerminal,formObject.ShippingInstRecDate,formObject.ShipInstSentDateToSl,formObject.ManifestRecDateFromSl,formObject.ShiperClDocDate,formObject.BlDraftFromSlRecDate,formObject.BlDraftToCustSentDate,formObject.BlDraftConfFromCustRecDate,formObject.DocSentToBrokerDate,formObject.ManifestSentToBrokerDate,formObject.GatePassRecDate,formObject.GatePassSentToTransDate,formObject.FinalBayanorOkToLoadRecDate,formObject.LoadingConfirmationRecDate,formObject.PreAlertSentDate,formObject.ArrivalNotificationSentDate,formObject.InvoicePreparedDate,formObject.HBLDate,formObject.MBLDate,formObject.DebitorCreditNoteDate,formObject.ETADate,formObject.TelexReleaseorSeawayBillDate,formObject.OblorGuaranteeCollectedDate,formObject.DocumentsReleasedDate,formObject.PaymentRecDate,formObject.Remarks
             ]];
         }else{
             var values = [[new Date().getTime().toString(),
-        formObject.ProductName,formObject.ProductCode,formObject.Price,formObject.Discount,formObject.TotalPrice
+        formObject.EntryDate,formObject.Status,formObject.CustomerName,formObject.LeadDate,formObject.CancelledDate,formObject.EnqDate,formObject.POL,formObject.POD,formObject.Cntr20,formObject.Cntr40_40Hc,formObject.AIR_LCR,formObject.PeriodOfShpmt,formObject.Commodity,formObject.RateReqDate,formObject.RateRcvdDate,formObject.BuyRate,formObject.SellRate,formObject.Profit,formObject.QtnSentDate,formObject.CnfmRcvdDate,formObject.JobDate,formObject.JobNo,formObject.BkgSentToLineorAgtDate,formObject.CroReceivedDate,formObject.CroSentToTransDate,formObject.CroNo,formObject.ContrNo,formObject.ContrNoRecDate,formObject.WBillNo,formObject.WBillSentDate,formObject.SealNo,formObject.SealNoRecDate,formObject.FullMovedToTerminal,formObject.ShippingInstRecDate,formObject.ShipInstSentDateToSl,formObject.ManifestRecDateFromSl,formObject.ShiperClDocDate,formObject.BlDraftFromSlRecDate,formObject.BlDraftToCustSentDate,formObject.BlDraftConfFromCustRecDate,formObject.DocSentToBrokerDate,formObject.ManifestSentToBrokerDate,formObject.GatePassRecDate,formObject.GatePassSentToTransDate,formObject.FinalBayanorOkToLoadRecDate,formObject.LoadingConfirmationRecDate,formObject.PreAlertSentDate,formObject.ArrivalNotificationSentDate,formObject.InvoicePreparedDate,formObject.HBLDate,formObject.MBLDate,formObject.DebitorCreditNoteDate,formObject.ETADate,formObject.TelexReleaseorSeawayBillDate,formObject.OblorGuaranteeCollectedDate,formObject.DocumentsReleasedDate,formObject.PaymentRecDate,formObject.Remarks
             ]];
         }
         return values;
@@ -109,7 +117,7 @@ function getFormValues(formObject){
             var idList = readData(globalVariables().spreadsheetId,globalVariables().idRange);
             for(var i=0;i<idList.length;i++){
             if(id==idList[i][0]){
-                return 'sheetName!A'+(i+2)+':'+globalVariables().lastCol+(i+2);
+                return "Sheet1!A"+(i+2)+':'+globalVariables().lastCol+(i+2);
             }
             }
         }
@@ -139,7 +147,7 @@ function getFormValues(formObject){
         if(lastRow<=11){
             var range = globalVariables().dataRage;
         }else{
-            var range = 'sheetName!A'+(lastRow-9)+':'+globalVariables().lastCol;
+            var range = "Sheet1!A"+(lastRow-9)+':'+globalVariables().lastCol;
         }
         var lastTenRows = readData(globalVariables().spreadsheetId,range);
         return lastTenRows;

@@ -1,174 +1,566 @@
+<!DOCTYPE html>
+<html>
 
-        <!DOCTYPE html>
-        <html>
+<head>
+      <base target="_top">
 
-        <head>
-        <base target="_top">
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link href="https://fonts.googleapis.com/css2?family=Niramit:wght@300&family=Prompt:wght@300&display=swap"
+            rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Niramit:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+      <style>
+            body {
+                  font-family: Prompt;
+                  font-size: 14px;
+            }
 
-        <style>
-        body {
-            font-family:Prompt;
-            font-size: 14px;
-        }
+            .btn-group-xs>.btn,
+            .btn-xs {
+                  padding: .25rem .4rem;
+                  font-size: .875rem;
+                  line-height: .5;
+                  border-radius: .2rem;
+            }
 
-        .btn-group-xs > .btn, .btn-xs {
-        padding: .25rem .4rem;
-        font-size: .875rem;
-        line-height: .5;
-        border-radius: .2rem;
-        }
+            .btn-head-table {
+                  padding-bottom: 10px;
+            }
 
-        .btn-head-table {
-        padding-bottom: 10px;
-        }
+            .editBtn:hover {
+                  color: white;
+            }
+      </style>
 
-        .editBtn:hover {
-            color: white;
-        }
-        </style>
+</head>
 
-        </head>
-
-        <body>
-        <div class="container">
+<body>
+      <div class="container">
 
             <!-- The Modal Form -->
             <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
+                  <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h2>Add/Edit Data</h2>
-                    <button type="button" id="btn-close" class="close" data-dismiss="modal" onclick="clearForm();">&times;</button>
-                </div>
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                    <h2>Add/Edit Data</h2>
+                                    <button type="button" id="btn-close" class="close" data-dismiss="modal"
+                                          onclick="clearForm();">&times;</button>
+                              </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <!-- start form -->
-                    <form id="myForm" class="p-2 border border-light rounded bg-light" onsubmit="handleFormSubmit(this)">
-                    <!-- Call JavaScript function "handleFormSubmit" -->
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                    <!-- start form -->
+                                    <form id="myForm" class="p-2 border border-light rounded bg-light"
+                                          onsubmit="handleFormSubmit(this)">
+                                          <!-- Call JavaScript function "handleFormSubmit" -->
 
-                    <div id="message"></div>
-                    <input type="text" id="RecId" name="RecId" value="" style="display: none">
-                    <div class="form-row">
-    
-            <div class="form-group col-md-6">
-                  <label for="RecId" >RecId</label>
-                  <input type="text" class="form-control" id="RecId" name="RecId" placeholder="RecId">
-            </div>
-            
-            <div class="form-group col-md-6">
-                  <label for="ProductName" >Product Name</label>
-                  <input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="Product Name">
-            </div>
-            
-            <div class="form-group col-md-6">
-                  <label for="ProductCode" >Product Code</label>
-                  <input type="text" class="form-control" id="ProductCode" name="ProductCode" placeholder="Product Code">
-            </div>
-            
-            <div class="form-group col-md-6">
-                  <label for="Price" >Price</label>
-                  <input type="text" class="form-control" id="Price" name="Price" placeholder="Price">
-            </div>
-            
-            <div class="form-group col-md-6">
-                  <label for="Discount" >Discount</label>
-                  <input type="text" class="form-control" id="Discount" name="Discount" placeholder="Discount">
-            </div>
-            
-            <div class="form-group col-md-6">
-                  <label for="TotalPrice" >Total Price</label>
-                  <input type="text" class="form-control" id="TotalPrice" name="TotalPrice" placeholder="Total Price">
-            </div>
-            
-            <button id="btnSubmit" type="submit" class="btn btn-primary" >Save</button>
-                    <input class="btn btn-secondary" type="reset" value="Clear">
+                                          <div id="message"></div>
+                                          <input type="text" id="RecId" name="RecId" value="" style="display: none">
+                                          <div class="form-row">
 
-                    </form>
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="EntryDate">Entry
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="EntryDate"
+                                                            name="EntryDate" placeholder="">
+                                                </div>
 
-                    <!-- end datatable -->
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="Status">Status</label>
+                                                      <input type="text" class="form-control" id="Status" name="Status"
+                                                            placeholder="">
+                                                </div>
 
-                </div>
-                </div>
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="CustomerName">Customer
+                                                            Name</label>
+                                                      <input type="text" class="form-control" id="CustomerName"
+                                                            name="CustomerName" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="LeadDate">Lead Date</label>
+                                                      <input type="date" class="form-control" id="LeadDate"
+                                                            name="LeadDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="CancelledDate">Cancelled
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="CancelledDate"
+                                                            name="CancelledDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="EnqDate">Enq Date</label>
+                                                      <input type="date" class="form-control" id="EnqDate"
+                                                            name="EnqDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="POL">POL</label>
+                                                      <input type="text" class="form-control" id="POL" name="POL"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="POD">POD</label>
+                                                      <input type="text" class="form-control" id="POD" name="POD"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="Cntr20">Cntr 20</label>
+                                                      <input type="text" class="form-control" id="Cntr20" name="Cntr20"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="Cntr40_40Hc">Cntr
+                                                            40_40Hc</label>
+                                                      <input type="text" class="form-control" id="Cntr40_40Hc"
+                                                            name="Cntr40_40Hc" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="AIR_LCR">AIR_LCR</label>
+                                                      <input type="text" class="form-control" id="AIR_LCR"
+                                                            name="AIR_LCR" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="PeriodOfShpmt">Period Of
+                                                            Shpmt</label>
+                                                      <input type="text" class="form-control" id="PeriodOfShpmt"
+                                                            name="PeriodOfShpmt" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="Commodity">Commodity</label>
+                                                      <input type="text" class="form-control" id="Commodity"
+                                                            name="Commodity" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="RateReqDate">Rate Req
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="RateReqDate"
+                                                            name="RateReqDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="RateRcvdDate">Rate Rcvd
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="RateRcvdDate"
+                                                            name="RateRcvdDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="BuyRate">Buy Rate</label>
+                                                      <input type="number" class="form-control" id="BuyRate"
+                                                            name="BuyRate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="SellRate">Sell Rate</label>
+                                                      <input type="number" class="form-control" id="SellRate"
+                                                            name="SellRate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="Profit">Profit</label>
+                                                      <input type="number" class="form-control" id="Profit"
+                                                            name="Profit" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="QtnSentDate">Qtn Sent
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="QtnSentDate"
+                                                            name="QtnSentDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="CnfmRcvdDate">Cnfm Rcvd
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="CnfmRcvdDate"
+                                                            name="CnfmRcvdDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="JobDate">Job Date</label>
+                                                      <input type="date" class="form-control" id="JobDate"
+                                                            name="JobDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="JobNo">Job No</label>
+                                                      <input type="text" class="form-control" id="JobNo" name="JobNo"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="BkgSentToLineorAgtDate">Bkg
+                                                            Sent To Line or Agt Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="BkgSentToLineorAgtDate" name="BkgSentToLineorAgtDate"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="CroReceivedDate">Cro
+                                                            Received Date</label>
+                                                      <input type="date" class="form-control" id="CroReceivedDate"
+                                                            name="CroReceivedDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="CroSentToTransDate">Cro Sent
+                                                            To Trans Date</label>
+                                                      <input type="date" class="form-control" id="CroSentToTransDate"
+                                                            name="CroSentToTransDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="CroNo">Cro No</label>
+                                                      <input type="text" class="form-control" id="CroNo" name="CroNo"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="ContrNo">Contr No</label>
+                                                      <input type="text" class="form-control" id="ContrNo"
+                                                            name="ContrNo" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="ContrNoRecDate">Contr No Rec
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="ContrNoRecDate"
+                                                            name="ContrNoRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="WBillNo">WBill No</label>
+                                                      <input type="text" class="form-control" id="WBillNo"
+                                                            name="WBillNo" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="WBillSentDate">WBill Sent
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="WBillSentDate"
+                                                            name="WBillSentDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="SealNo">Seal No</label>
+                                                      <input type="text" class="form-control" id="SealNo" name="SealNo"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="SealNoRecDate">Seal No Rec
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="SealNoRecDate"
+                                                            name="SealNoRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="FullMovedToTerminal">Full
+                                                            Moved To Terminal</label>
+                                                      <input type="date" class="form-control" id="FullMovedToTerminal"
+                                                            name="FullMovedToTerminal" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="ShippingInstRecDate">Shipping Inst Rec Date</label>
+                                                      <input type="date" class="form-control" id="ShippingInstRecDate"
+                                                            name="ShippingInstRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="ShipInstSentDateToSl">Ship
+                                                            Inst Sent Date To Sl</label>
+                                                      <input type="date" class="form-control" id="ShipInstSentDateToSl"
+                                                            name="ShipInstSentDateToSl" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="ManifestRecDateFromSl">Manifest Rec Date From
+                                                            Sl</label>
+                                                      <input type="date" class="form-control" id="ManifestRecDateFromSl"
+                                                            name="ManifestRecDateFromSl" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="ShiperClDocDate">Shiper Cl
+                                                            Doc Date</label>
+                                                      <input type="date" class="form-control" id="ShiperClDocDate"
+                                                            name="ShiperClDocDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="BlDraftFromSlRecDate">Bl
+                                                            Draft From Sl Rec Date</label>
+                                                      <input type="date" class="form-control" id="BlDraftFromSlRecDate"
+                                                            name="BlDraftFromSlRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="BlDraftToCustSentDate">Bl
+                                                            Draft To Cust Sent Date</label>
+                                                      <input type="date" class="form-control" id="BlDraftToCustSentDate"
+                                                            name="BlDraftToCustSentDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="BlDraftConfFromCustRecDate">Bl Draft Conf From Cust Rec
+                                                            Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="BlDraftConfFromCustRecDate"
+                                                            name="BlDraftConfFromCustRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="DocSentToBrokerDate">Doc
+                                                            Sent To Broker Date</label>
+                                                      <input type="date" class="form-control" id="DocSentToBrokerDate"
+                                                            name="DocSentToBrokerDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="ManifestSentToBrokerDate">Manifest Sent To Broker
+                                                            Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="ManifestSentToBrokerDate"
+                                                            name="ManifestSentToBrokerDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="GatePassRecDate">Gate Pass
+                                                            Rec Date</label>
+                                                      <input type="date" class="form-control" id="GatePassRecDate"
+                                                            name="GatePassRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="GatePassSentToTransDate">Gate Pass Sent To Trans
+                                                            Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="GatePassSentToTransDate" name="GatePassSentToTransDate"
+                                                            placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="FinalBayanorOkToLoadRecDate">Final Bayan or Ok To Load
+                                                            Rec Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="FinalBayanorOkToLoadRecDate"
+                                                            name="FinalBayanorOkToLoadRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="LoadingConfirmationRecDate">Loading Confirmation Rec
+                                                            Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="LoadingConfirmationRecDate"
+                                                            name="LoadingConfirmationRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="PreAlertSentDate">Pre Alert
+                                                            Sent Date</label>
+                                                      <input type="date" class="form-control" id="PreAlertSentDate"
+                                                            name="PreAlertSentDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="ArrivalNotificationSentDate">Arrival Notification Sent
+                                                            Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="ArrivalNotificationSentDate"
+                                                            name="ArrivalNotificationSentDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="InvoicePreparedDate">Invoice
+                                                            Prepared Date</label>
+                                                      <input type="date" class="form-control" id="InvoicePreparedDate"
+                                                            name="InvoicePreparedDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="HBLDate">HBL Date</label>
+                                                      <input type="date" class="form-control" id="HBLDate"
+                                                            name="HBLDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="MBLDate">MBL Date</label>
+                                                      <input type="date" class="form-control" id="MBLDate"
+                                                            name="MBLDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="DebitorCreditNoteDate">Debit
+                                                            or Credit Note Date</label>
+                                                      <input type="date" class="form-control" id="DebitorCreditNoteDate"
+                                                            name="DebitorCreditNoteDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="ETADate">ETA Date</label>
+                                                      <input type="date" class="form-control" id="ETADate"
+                                                            name="ETADate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="TelexReleaseorSeawayBillDate">Telex Release or Seaway
+                                                            Bill Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="TelexReleaseorSeawayBillDate"
+                                                            name="TelexReleaseorSeawayBillDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="OblorGuaranteeCollectedDate">Obl or Guarantee Collected
+                                                            Date</label>
+                                                      <input type="date" class="form-control"
+                                                            id="OblorGuaranteeCollectedDate"
+                                                            name="OblorGuaranteeCollectedDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;"
+                                                            for="DocumentsReleasedDate">Documents Released Date</label>
+                                                      <input type="date" class="form-control" id="DocumentsReleasedDate"
+                                                            name="DocumentsReleasedDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="PaymentRecDate">Payment Rec
+                                                            Date</label>
+                                                      <input type="date" class="form-control" id="PaymentRecDate"
+                                                            name="PaymentRecDate" placeholder="">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                      <label style="font-weight:bold;" for="Remarks">Remarks</label>
+                                                      <input type="text" class="form-control" id="Remarks"
+                                                            name="Remarks" placeholder="">
+                                                </div>
+
+                                                <div class="form-inline">
+                                                      <div class="orm-group mx-sm-3 mb-2">
+                                                            <button id="btnSubmit" type="submit"
+                                                                  class="btn btn-primary">Save</button>
+
+                                                      </div>
+                                                      <div class="orm-group mx-sm-3 mb-2">
+
+                                                            <input class="btn btn-secondary" type="reset" value="Clear">
+                                                      </div>
+                                                </div>
+
+
+
+                                    </form>
+
+                                    <!-- end datatable -->
+
+                              </div>
+                        </div>
+                  </div>
             </div>
-            </div>
-        </div>
+      </div>
 
-        <!-- DataTable  -->
-        <div style="margin-left:20px;margin-top:10px; margin-right:20px">
+      <!-- DataTable  -->
+      <div style="margin-left:20px;margin-top:10px; margin-right:20px">
             <div class="row">
-            <div class="col-sm-9">
-                <div class="btn-head-table">
-                <p></p>
-                </div>
-            </div>
+                  <div class="col-sm-9">
+                        <div class="btn-head-table">
+                              <p></p>
+                        </div>
+                  </div>
             </div>
             <div class="row">
-            <div class="col-md">
+                  <div class="col-md">
 
-                <!-- start datatable -->
-                <div class="table-wrapper" style="height:50px">
-                <div class="row">
-                    <div class="col-xs-6" style="margin-left:5px;margin-top:10px">
-                    <h4>Import/Export Main Data</h4>
-                    </div>
-                    <div class="col">
-                    <!-- button for adding user. ------------------ -->
-                    <div class='btn-head-table'>
-                        <button type='button' class='btn btn-info'data-toggle='modal' data-target='#myModal'style="float:right;margin-top:-41px; margin-right:5px"> + Add Entry</button>
-                    </div>
-                    </div>
-                </div>
-                </div><br>
-                <div class="col-auto" style="float:right">
-                <form id="search-form" class="form-inline" onclick="loading();" onsubmit="handleFormSubmitSearch(this);">
-                    <div class="form-group mb-2">
-                    <label for="searchtext"><i class="fa fa-search" aria-hidden="true"></i></label>
-                    </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                    <input type="text" class="form-control" id="searchtext" name="searchtext" placeholder="Search here...">
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-2">Search</button>
-                </form>
-                </div>
-            </div>
+                        <!-- start datatable -->
+                        <div class="table-wrapper" style="height:50px">
+                              <div class="row">
+                                    <div class="col-xs-6" style="margin-left:5px;margin-top:10px">
+                                          <h4>Import/Export Main Data</h4>
+                                    </div>
+                                    <div class="col">
+                                          <!-- button for adding user. ------------------ -->
+                                          <div class='btn-head-table'>
+                                                <button type='button' class='btn btn-info' data-toggle='modal'
+                                                      data-target='#myModal'
+                                                      style="float:right;margin-top:-41px; margin-right:5px"> + Add
+                                                      Entry</button>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div><br>
+                        <div class="col-auto" style="float:right">
+                              <form id="search-form" class="form-inline" onclick="loading();"
+                                    onsubmit="handleFormSubmitSearch(this);">
+                                    <div class="form-group mb-2">
+                                          <label for="searchtext"><i class="fa fa-search"
+                                                      aria-hidden="true"></i></label>
+                                    </div>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                          <input type="text" class="form-control" id="searchtext" name="searchtext"
+                                                placeholder="Search here...">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                              </form>
+                        </div>
+                  </div>
 
-            <!-- <div id="dataTable" class="table-responsive"></div> -->
-            <table id="dataTable" class="table dt-responsive nowrap" style="width:100%"></table>
+                  <!-- <div id="dataTable" class="table-responsive"></div> -->
+                  <table id="dataTable" class="table dt-responsive nowrap" style="width:100%"></table>
 
-            <!-- <div>
+                  <!-- <div>
                 <button type="button" class="btn btn-primary" onclick="getAllData()">All Data</button>
             </div> -->
-            <!-- end datatable -->
+                  <!-- end datatable -->
 
             </div>
-        </div>
+      </div>
 
-        <?!= HtmlService.createHtmlOutputFromFile('js').getContent() ?>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
-        </body>
+      <?!= HtmlService.createHtmlOutputFromFile('js').getContent() ?>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+      <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+      <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
+</body>
 
-        </html>
-
-    
+</html>

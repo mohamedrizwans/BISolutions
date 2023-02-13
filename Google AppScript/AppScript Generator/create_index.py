@@ -56,14 +56,13 @@ def Create():
 
             <!-- The Modal Form -->
             <div class="modal" id="myModal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h2>Add/Edit Data</h2>
-                    <button type="button" id="btn-close" class="close" data-dismiss="modal" onclick="clearForm();">&times;</button>
-                </div>
+                    <button type="button" id="btn-close" class="btn-close btn-danger" aria-label="Close" data-dismiss="modal" onclick="clearForm();"></button>
 
                 <!-- Modal body -->
                 <div class="modal-body">
@@ -77,16 +76,28 @@ def Create():
     '''
 
     for index, row in df.iterrows():
+        if (row["internalcolumn"] == 'RecId'):
+            continue
         Content += '''
-            <div class="form-group col-md-6">
-                  <label for="''' + row["internalcolumn"] + '''" >''' + row["screencolumn"] + '''</label>
-                  <input type="text" class="form-control" id="''' + row["internalcolumn"] + '''" name="''' + row["internalcolumn"] + '''" placeholder="''' + row["screencolumn"] + '''">
+            <div class="form-group col-md-4">
+                  <label style="font-weight:bold;" for="''' + row["internalcolumn"] + '''" >''' + row["screencolumn"] + '''</label>
+                  <input type="''' + row["datatype"] + '''" class="form-control" id="''' + row["internalcolumn"] + '''" name="''' + row["internalcolumn"] + '''" placeholder="">
             </div>
             '''
 
     Content += '''
-            <button id="btnSubmit" type="submit" class="btn btn-primary" >Save</button>
+            <div class="form-inline">
+            <div class="orm-group mx-sm-3 mb-2">
+                    <button id="btnSubmit" type="submit" class="btn btn-primary" >Save</button>
+                   
+            </div>
+            <div class="orm-group mx-sm-3 mb-2">
+                    
                     <input class="btn btn-secondary" type="reset" value="Clear">
+            </div>
+            </div>
+
+
 
                     </form>
 

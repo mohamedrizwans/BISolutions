@@ -2,6 +2,15 @@ import pandas as pd
 
 df = pd.read_excel(r'TableDesign.xlsx', sheet_name="Sheet1")
 
+var_spreadsheetId = '1uKQl-a0Hk-zJA_Z4hb8lWW08dD4XLyB17cuInm7oieA'
+var_sheetName = 'Sheet1'
+var_dataRage = var_sheetName + '!A2:BG'
+var_idRange = var_sheetName + '!A2:A'
+var_lastCol = 'BG'
+var_insertRange = var_sheetName + '!A1:BG1'
+var_sheetID = '0'
+
+
 # df = df.reset_index()  # make sure indexes pair with number of rows
 # print(df["sno"].count())
 
@@ -35,12 +44,12 @@ function validate(email, fileID){
 
 function globalVariables(){ 
   var varArray = {
-    spreadsheetId   : '1s_xWoCqqIA2Mm4YKUQEjAKPSA-NcAWUwb_VfoU8s6vo',
-    dataRage        : 'Sheet1!A2:J',
-    idRange         : 'Sheet1!A2:A',
-    lastCol         : 'J',
-    insertRange     : 'Sheet1!A1:J1',
-    sheetID         : '0' //number after gid=... at url google sheet 
+    spreadsheetId   : "''' + var_spreadsheetId + '''",
+    dataRage        : "''' + var_dataRage + '''",
+    idRange         : "''' + var_idRange + '''",  
+    lastCol         : "''' + var_lastCol + '''",
+    insertRange     : "''' + var_insertRange + '''",
+    sheetID         : "''' + var_sheetID + '''"
   };
   return varArray;
 }
@@ -134,7 +143,7 @@ function getFormValues(formObject){
             var idList = readData(globalVariables().spreadsheetId,globalVariables().idRange);
             for(var i=0;i<idList.length;i++){
             if(id==idList[i][0]){
-                return 'sheetName!A'+(i+2)+':'+globalVariables().lastCol+(i+2);
+                return "''' + var_sheetName + '''!A"+(i+2)+':'+globalVariables().lastCol+(i+2);
             }
             }
         }
@@ -164,7 +173,7 @@ function getFormValues(formObject){
         if(lastRow<=11){
             var range = globalVariables().dataRage;
         }else{
-            var range = 'sheetName!A'+(lastRow-9)+':'+globalVariables().lastCol;
+            var range = "''' + var_sheetName + '''!A"+(lastRow-9)+':'+globalVariables().lastCol;
         }
         var lastTenRows = readData(globalVariables().spreadsheetId,range);
         return lastTenRows;

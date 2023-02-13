@@ -23,7 +23,7 @@ def main():
     conn.close()
 
     sa = gspread.service_account(filename="service_account.json")
-    sh =   .open("Google Sheet Pull to MySql")
+    sh = sa.open("Google Sheet Pull to MySql")
     wks = sh.worksheet("Sheet2")
 
     wks.update('A2', result)
