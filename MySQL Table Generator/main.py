@@ -1,4 +1,4 @@
 import generate
 
-generate.Create("table1")
-generate.Create("table2")
+generate.Create("tInvPurchase")
+generate.Create("tInvOutward")

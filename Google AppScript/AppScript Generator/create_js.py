@@ -151,7 +151,7 @@ def Create():
     '''
 
     for index, row in df.iterrows():
-        Content += '''
+        Content = Content + '''
            document.getElementById("''' + row["internalcolumn"] + '''").value = records[0][''' + str(index) + '''];
             '''
 

@@ -1,5 +1,5 @@
 # Change Your Credentials Here
 user = "root"
-password = ""
+password = "root"
 host = "localhost"
 database = "python"
