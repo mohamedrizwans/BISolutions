@@ -1,7 +1,8 @@
 import pandas as pd
 
-def Create(table_name):
-    df = pd.read_excel(r'TableDesign.xlsx', sheet_name='' + table_name + '')
+
+def Create(table_design_excel, table_name):
+    df = pd.read_excel(table_design_excel , sheet_name='' + table_name + '')
     SQLScript = 'CREATE TABLE ' + table_name + '('
 
     for index, row in df.iterrows():

@@ -1,4 +1,4 @@
 import generate
 
-generate.Create("tInvPurchase")
-generate.Create("tInvOutward")
+generate.Create("TableDesign_PPS.xlsx", "tInvPurchase")
+generate.Create("TableDesign_PPS.xlsx", "tInvOutward")

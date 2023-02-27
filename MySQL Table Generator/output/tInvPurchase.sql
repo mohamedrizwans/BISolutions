@@ -1,14 +1,14 @@
 CREATE TABLE tInvPurchase(
-                EntryDate DATE NULL
-                , SupplierCode VARCHAR (100) NOT NULL
+                PurchaseDate DATE NULL
+                , SupplierCode VARCHAR (100) NULL
                 , SupplierName VARCHAR (300) NULL
                 , InvoiceDate DATE NULL
                 , Invno VARCHAR (100) NULL
                 , DCNo VARCHAR (100) NULL
                 , Category VARCHAR (100) NULL
-                , ItemCode VARCHAR (100) NOT NULL
+                , ItemCode VARCHAR (100) NULL
                 , Item VARCHAR (300) NULL
-                , BatchNo VARCHAR (100) NULL
+                , LotNo VARCHAR (100) NULL
                 , ReceiveSite VARCHAR (50) NULL
                 , StorageLocation VARCHAR (50) NULL
                 , InvoiceQty INT NULL
