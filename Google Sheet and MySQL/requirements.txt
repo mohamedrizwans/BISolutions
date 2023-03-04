@@ -1,0 +1,4 @@
+gspread
+mysql-connector-python
+oauth2client
+schedule
