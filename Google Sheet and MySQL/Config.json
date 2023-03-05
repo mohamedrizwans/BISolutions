@@ -11,7 +11,7 @@
       {
         "sheetid": "1zDKhh4YJOCxfgudwXcd7KTrmu_9tkRMwZtGSV_5XV34",
         "gstabs": [
-          { "gstab": "Purchase", "dbtab": "tInvPurchase", "columncount": 22 },
+          { "gstab": "Purchase", "dbtab": "tInvPurchase", "columncount": 23 },
           { "gstab": "Outward", "dbtab": "tInvOutward", "columncount": 15 }
         ]
       }
