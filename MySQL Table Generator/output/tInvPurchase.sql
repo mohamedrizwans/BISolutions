@@ -5,6 +5,7 @@ CREATE TABLE tInvPurchase(
                 , InvoiceDate DATE NULL
                 , Invno VARCHAR (100) NULL
                 , DCNo VARCHAR (100) NULL
+                , Type VARCHAR (100) NULL
                 , Category VARCHAR (100) NULL
                 , ItemCode VARCHAR (100) NULL
                 , Item VARCHAR (300) NULL
