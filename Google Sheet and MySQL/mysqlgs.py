@@ -10,28 +10,31 @@ import json
 # Execute This File Only
 
 
-def main():
+def main(paramhost, paramdatabase, paramuser, parampassword, sheetkey, sheettabname, sqlobj):
     # Runner()
     conn = mysql.connector.connect(
-        user=mc.user,
-        password=mc.password,
-        host=mc.host,
-        database=mc.database)
+        user=paramuser,
+        password=parampassword,
+        host=paramhost,
+        database=paramdatabase)
 
     cur = conn.cursor()
-    cur.execute("""SELECT * FROM vwJob""")
+    cur.execute(f"""SELECT * FROM {sqlobj}""")
     result = cur.fetchall()
     conn.commit()
     conn.close()
 
     sa = gspread.service_account(filename="service_account.json")
-    sh = sa.open_by_key("1QOpaJuEMCNqAdvFeol6s6SZIdURn43P4AugwQxncmtY")
-    wks = sh.worksheet("processed")
+    sh = sa.open_by_key(sheetkey)
+    wks = sh.worksheet(sheettabname)
+    wks.batch_clear(["A2:ZZ"])
 
     wks.update('A2', result)
 
 
-main()
+def Runner(paramhost, paramdatabase, paramuser, parampassword, sheetkey, sheettabname, sqlobj):
+    main(paramhost, paramdatabase, paramuser,
+         parampassword, sheetkey, sheettabname, sqlobj)
 
 # schedule.every(2).seconds.do(main)
 

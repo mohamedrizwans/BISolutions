@@ -11,6 +11,7 @@ scope = ['https://spreadsheets.google.com/feeds',
 creds = ServiceAccountCredentials.from_json_keyfile_name(
     'service_account.json', scope)
 client = gspread.authorize(creds)
+# connection = ''
 
 
 def GetSpreadsheetData(shetKey, worksheetName):
@@ -18,14 +19,20 @@ def GetSpreadsheetData(shetKey, worksheetName):
     return sheet.get_all_values()[1:]
 
 
-def WriteToMySQLTable(sql_data, tableName, column_count):
+def WriteToMySQLTable(paramhost, paramdatabase, paramuser, parampassword, sql_data, tableName, column_count):
 
     try:
+        # connection = mysql.connector.connect(
+        #     user=mc.user,
+        #     password=mc.password,
+        #     host=mc.host,
+        #     database=mc.database
+        # )
         connection = mysql.connector.connect(
-            user=mc.user,
-            password=mc.password,
-            host=mc.host,
-            database=mc.database
+            user=paramuser,
+            password=parampassword,
+            host=paramhost,
+            database=paramdatabase
         )
         sql_truncate = "TRUNCATE TABLE {} ".format(tableName)
 
@@ -77,7 +84,18 @@ def PreserveNULLValues(listName):
     # print('NULL values preserved.')
 
 
-def Runner(SheetKey, SheetIndex, mysqlTable, column_count):
+def Runner(paramhost, paramdatabase, paramuser, parampassword, SheetKey, SheetIndex, mysqlTable, column_count):
     data = GetSpreadsheetData(SheetKey, SheetIndex)
     PreserveNULLValues(data)
-    WriteToMySQLTable(data, mysqlTable, column_count)
+    WriteToMySQLTable(paramhost, paramdatabase, paramuser,
+                      parampassword, data, mysqlTable, column_count)
+
+
+def connectdb(paramhost, paramdatabase, paramuser, parampassword):
+    global connection
+    connection = mysql.connector.connect(
+        user=paramuser,
+        password=parampassword,
+        host=paramhost,
+        database=paramdatabase
+    )
