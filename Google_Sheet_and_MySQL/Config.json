@@ -1,0 +1,56 @@
+[
+  {
+    "client": "PPS",
+    "isactive": true,
+    "dbcred": {
+      "user": "root",
+      "password": "",
+      "host": "localhost",
+      "database": "bis_pps"
+    },
+    "gstodb": [
+      {
+        "sheetid": "1zDKhh4YJOCxfgudwXcd7KTrmu_9tkRMwZtGSV_5XV34",
+        "gstabs": [
+          { "gstab": "Purchase", "dbtab": "tInvPurchase", "columncount": 23 },
+          { "gstab": "Outward", "dbtab": "tInvOutward", "columncount": 15 }
+        ]
+      }
+    ],
+    "dbtogs": [
+      {
+        "sheetid": "1Ww3K_4woBHefz5g-PVIDFq4thVQf1Qy0a4PNkR1_jKk",
+        "gstabs": [
+          { "gstab": "Processed Data", "dbtab": "vwinventorymovement"}
+        ]
+      }
+    ]
+  },
+  {
+    "client": "ZTX",
+    "isactive": true,
+    "dbcred": {
+      "user": "root",
+      "password": "",
+      "host": "localhost",
+      "database": "bis_ztx"
+    },
+    "gstodb": [
+      {
+        "sheetid": "10MtyAdzVJwWJCwv23wdLAKbdsxh0BZJd3tCGIpeFlMM",
+        "gstabs": [
+          { "gstab": "JOBs", "dbtab": "job1", "columncount": 61 }
+        ]
+      }
+    ],
+    "dbtogs": [
+      {
+        "sheetid": "1QOpaJuEMCNqAdvFeol6s6SZIdURn43P4AugwQxncmtY",
+        "gstabs": [
+          { "gstab": "processed", "dbtab": "vwjob"},
+          { "gstab": "Data-Today", "dbtab": "vwtodayactivity"}
+        ]
+      }
+    ]
+  }
+]
