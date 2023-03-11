@@ -1,10 +1,10 @@
 [
   {
     "client": "PPS",
-    "isactive": true,
+    "isactive": false,
     "dbcred": {
       "user": "root",
-      "password": "",
+      "password": "root",
       "host": "localhost",
       "database": "bis_pps"
     },
@@ -13,7 +13,7 @@
         "sheetid": "1zDKhh4YJOCxfgudwXcd7KTrmu_9tkRMwZtGSV_5XV34",
         "gstabs": [
           { "gstab": "Purchase", "dbtab": "tInvPurchase", "columncount": 23 },
-          { "gstab": "Outward", "dbtab": "tInvOutward", "columncount": 15 }
+          { "gstab": "Outward", "dbtab": "tInvOutward", "columncount": 18 }
         ]
       }
     ],
@@ -21,17 +21,17 @@
       {
         "sheetid": "1Ww3K_4woBHefz5g-PVIDFq4thVQf1Qy0a4PNkR1_jKk",
         "gstabs": [
-          { "gstab": "Processed Data", "dbtab": "vwinventorymovement"}
+          { "gstab": "Processed Movement", "dbtab": "tinvMovement"}
         ]
       }
     ]
   },
   {
     "client": "ZTX",
-    "isactive": true,
+    "isactive": false,
     "dbcred": {
       "user": "root",
-      "password": "",
+      "password": "root",
       "host": "localhost",
       "database": "bis_ztx"
     },
@@ -49,6 +49,33 @@
         "gstabs": [
           { "gstab": "processed", "dbtab": "vwjob"},
           { "gstab": "Data-Today", "dbtab": "vwtodayactivity"}
+        ]
+      }
+    ]
+  },
+  {
+    "client": "Pakkar",
+    "isactive": true,
+    "dbcred": {
+      "user": "root",
+      "password": "root",
+      "host": "localhost",
+      "database": "dbpakkar"
+    },
+    "gstodb": [
+      {
+        "sheetid": "1LihbmBF2QwVtzZGRHAHVNGfoAEVCAeY6_s1mdeO3_z8",
+        "gstabs": [
+          { "gstab": "Initial Target", "dbtab": "tinitialtarget", "columncount": 10 },
+          { "gstab": "Daily Production", "dbtab": "tdailyproduction", "columncount": 7 }
+        ]
+      }
+    ],
+    "dbtogs": [
+      {
+        "sheetid": "19L9D36guyp0PwjxiW_rhwWSANbqloHCCqZ2FUi8ovjA",
+        "gstabs": [
+          { "gstab": "Sheet1", "dbtab": "tdailyproduction"}          
         ]
       }
     ]
