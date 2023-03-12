@@ -34,6 +34,9 @@ for i in data:
 for i2 in data:
     print(i2["client"])
     print("------------------")
+    if i2["isactive"] == False:
+        print("Client is Disabled. So, Moving to Next client")
+        continue
     # gsm.connectdb(i["dbcred"]["host"],i["dbcred"]["database"],i["dbcred"]["user"],i["dbcred"]["password"])
     for j2 in i2["dbtogs"]:
         sheetid = j2["sheetid"]

@@ -75,7 +75,7 @@
       {
         "sheetid": "19L9D36guyp0PwjxiW_rhwWSANbqloHCCqZ2FUi8ovjA",
         "gstabs": [
-          { "gstab": "Sheet1", "dbtab": "tdailyproduction"}          
+          { "gstab": "Sheet1", "dbtab": "vwDailyTarget"}          
         ]
       }
     ]
